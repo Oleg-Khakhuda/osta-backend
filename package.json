@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node -r dotenv/config --experimental-specifier-resolution=node ./bin/server.js",
-    "start:dev": "nodemon -r dotenv/config  --experimental-specifier-resolution=node ./bin/server.js"
+    "start": "node -r dotenv/config --experimental-modules --experimental-specifier-resolution=node ./bin/server.js",
+    "start:dev": "nodemon -r dotenv/config --experimental-modules --es-module-specifier-resolution=node ./bin/server.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,11 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mongoose": "^6.3.3"
+    "joi": "^17.6.0",
+    "mongoose": "^6.3.3",
+    "multer": "^1.4.4-lts.1",
+    "nanoid": "^3.3.4",
+    "nodemodule": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

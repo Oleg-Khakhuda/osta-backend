@@ -1,33 +1,31 @@
 import mongoose from 'mongoose';
-import { MIN_QUANTITY, MAX_QUANTITY } from '../lib/constants';
 const { Schema, model } = mongoose;
 
 const platesSchema = new Schema({
 name: {
     type: String,
-    required: [true, 'Set name for contact'],
+    // required: [true, 'Set name for plate'],
     },
 quantity: {
     type: Number,
-    min: MIN_QUANTITY,
-    max: MAX_QUANTITY,
     default: null,
-},
-photo: {
-    type: String,
 },
 price: {
     type: Number,
     },
 description: {
     type: String,
+    },
+plateImage: {
+    type: String,
+    default: null,
 },
-favorite: [{
-    id: Schema.Types.ObjectId,
-    addedDate: Date,
-    type: Boolean,
-    default: false,
-}],
+// favorite: [{
+//     id: Schema.Types.ObjectId,
+//     addedDate: Date,
+//     type: Boolean,
+//     default: false,
+// }],
 }, {
     versionKey: false,
     timestamps: true,

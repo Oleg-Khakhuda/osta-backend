@@ -1,18 +1,23 @@
-import { Router } from 'express'
-import { getPlates, addPlate, getPlateById, removePlate, updatePlate } from '../../../controllers/plates'
+import { Router } from 'express';
+import { getPlates, addPlate, getPlateById, removePlate, updatePlate } from '../../../controllers/plates';
+import {validateQuery, validateCreate, validateUpdate, validateUpdateFavorite, validateId} from './validation';
+import { upload } from '../../../middlewares/upload';
 
 const router = new Router()
 
-router.get('/', getPlates)
 
-router.get('/:id', getPlateById)
+router.get('/', validateQuery, getPlates)
 
-router.post('/', addPlate)
+router.get('/plates/:id', validateId, getPlateById)
 
-router.delete('/:id', removePlate)
+router.post('/', upload.single('plateImage'), addPlate)
 
-router.put('/:id', updatePlate)
+router.delete('/:id', validateId, removePlate)
 
-router.patch('/:id/favorite', updatePlate)
+router.put('/:id', validateUpdate, validateId, updatePlate)
+
+router.patch('/:id/favorite', validateUpdateFavorite, validateId, updatePlate)
+
+// router.post('/', upload.single('photo'), addPhotoPlate)
 
 export default router
