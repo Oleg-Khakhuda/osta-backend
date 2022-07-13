@@ -11,13 +11,21 @@ const getPlates = async (req, res, next) => {
 
 const addPlate = async (req, res) => {
   const { name, quantity, price, description } = req.body
+  
+  const reqFiles = [];
+
+  for (let i = 0; i < req.files.length; i++) {
+      reqFiles.push(`http://localhost:${process.env.PORT}/${req.files[i].path}`)
+    }
+
   const newPlate = await repositoryPlates.addPlate({
     name,
     quantity,
     price,
     description,
-    plateImage: req.file ? `http://localhost:${process.env.PORT}/${req.file.path}` : ""
+    plateImage: reqFiles
   });
+
   if (newPlate) {
     return res.status(HttpCode.CREATED).json(newPlate)
   }
@@ -38,7 +46,7 @@ const removePlate = async (req, res, next) => {
   const { id } = req.params
   const plate = await repositoryPlates.removePlate(id)
   if (plate) {
-    return res.status(HttpCode.OK).json({ status: 'success', code: HttpCode.OK, data: { plate } })
+    return res.status(HttpCode.OK).json({ status: 'success', code: HttpCode.OK, plate })
   }
   res.status(HttpCode.NOT_FOUND).json({ status: 'error', code: HttpCode.NOT_FOUND, message: 'Not found' })
 }

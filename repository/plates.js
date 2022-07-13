@@ -12,13 +12,6 @@ const addPlate = async (body) => {
   return plate;
 };
 
-// const addPhotoPlate = async(file) => {
-//   const plate = await Photo.create({
-//     photo: `http://localhost:${process.env.CLIENT_PORT}/static/${file.filename}`,
-//   });
-//   return plate;
-// }
-
 const getPlateById = async (plateId) => {
   const result = await Plates.findOne({ _id: plateId });
   return result;

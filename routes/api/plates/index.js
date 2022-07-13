@@ -8,11 +8,11 @@ const router = new Router()
 
 router.get('/', validateQuery, getPlates)
 
-router.get('/plates/:id', validateId, getPlateById)
+router.get('/plate/:id', validateId, getPlateById)
 
-router.post('/', upload.single('plateImage'), addPlate)
+router.post('/', upload.array('plateImage', 6), addPlate)
 
-router.delete('/:id', validateId, removePlate)
+router.delete('/:id', removePlate)
 
 router.put('/:id', validateUpdate, validateId, updatePlate)
 

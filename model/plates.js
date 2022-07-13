@@ -17,7 +17,7 @@ description: {
     type: String,
     },
 plateImage: {
-    type: String,
+    type: Array,
     default: null,
 },
 // favorite: [{
